@@ -25,7 +25,6 @@
         padding: 0;
       }
       header .title {
-        font-family: 'nyt-karnakcondensed';
         font-weight: 700;
         font-size: 37px;
         color: white;
@@ -78,6 +77,19 @@
         text-align: center;
         left: 0;
         right: 0;
+      }
+
+      .shake {
+        display: inline-block;
+        animation: shake .3s;
+      }
+
+      @keyframes shake {
+        0% {transform: translate(0px, 0px)}
+        25% {transform: translate(2px, 0px)}
+        50% {transform: translate(0px, 0px)}
+        75% {transform: translate(2px, 0px)}
+        100% {transform: translate(0px, 0px)}
       }
     </style>
     <header>

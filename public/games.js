@@ -91,8 +91,15 @@
 
       var normalized_path = normalize_path(passes)
       var match_glyph = glyphs.filter(g => g[0] == normalized_path)
-      if (match_glyph.length == 0)
+      if (match_glyph.length == 0) {
+        let b = document.querySelector('body')
+        b.className = 'shake'
+        setTimeout(()=>{
+          let b = document.querySelector('body')
+          b.className = 'body'
+        }, 1000)
         return
+      }
 
       var rid = document.getElementById('result')
       rid.textContent = match_glyph[0][1]
