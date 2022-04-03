@@ -1,2 +1,2 @@
 # glyple
-Wordle linke Glyph Game
+Wordle like Glyph Game
