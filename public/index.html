@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Glyple</title>
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height,
+    user-scalable=no, initial-scale=1, maximum-scale=1"
+    />
+
+    <script src="pixi.min.js"></script>
+    <script src="data.js"></script>
+    <script src="board.js"></script>
+    <script src="games.js"></script>
+    <script>
+      window.addEventListener("load", onLoad);
+    </script>
+  </head>
+  <body style="background: black">
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      header .title {
+        font-family: 'nyt-karnakcondensed';
+        font-weight: 700;
+        font-size: 37px;
+        color: white;
+        line-height: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+      }
+      .answers{
+        display: flex;
+        margin: 0 auto;
+      }
+      .answers-board {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        width: 300px;
+      }
+      .answer {
+        width: 100%;
+      }
+      #game {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+      }
+      #board-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        overflow: hidden;
+      }
+      #result {
+        font-weight: 700;
+        font-size: 37px;
+        color: white;
+        line-height: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+      }
+      #fail_result {
+        font-weight: 700;
+        font-size: 37px;
+        color: red;
+        line-height: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+      }
+    </style>
+    <header>
+      <div class='title'>Glyple</div>
+    </header>
+    <div id='game'>
+      <div class='answers'>
+        <div class='answers-board'>
+          <img id='answer1' class='answer' src='./resources/answer.png' />
+          <img id='answer2' class='answer' src='./resources/answer.png' />
+          <img id='answer3' class='answer' src='./resources/answer.png' />
+          <img id='answer4' class='answer' src='./resources/answer.png' />
+          <img id='answer5' class='answer' src='./resources/answer.png' />
+          <img id='answer6' class='answer' src='./resources/answer.png' />
+        </div>
+      </div>
+      <div id='board-container'>
+      </div>
+      <div id='result'></div>
+      <div id='fail_result'></div>
+    </div>
+  </body>
+</html>
