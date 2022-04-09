@@ -60,24 +60,24 @@
       bg.endFill()
 
       for (var i = 0; i < matches.length; ++i, ++i) {
-        bg.lineStyle(8, 0xcab558).moveTo(
+        bg.lineStyle({width: 8, color: 0xcab558, cap: 'round'}).moveTo(
           matches[i][0], matches[i][1]).lineTo(matches[i + 1][0], matches[i + 1][1])
       }
 
       for (var i = 0; i < mask.length; ++i, ++i) {
-        bg.lineStyle(8, 0x6aac64).moveTo(
+        bg.lineStyle({width: 8, color: 0x6aac64, cap: 'round'}).moveTo(
           mask[i][0], mask[i][1]).lineTo(mask[i + 1][0], mask[i + 1][1])
       }
 
       if (points.length) {
-        bg.lineStyle(8, 0x8080ff).moveTo(points[0][0], points[0][1])
+        bg.lineStyle({width: 8, color: 0x8080ff, cap: 'round'}).moveTo(points[0][0], points[0][1])
         points.forEach(p => {
           bg.lineTo(p[0], p[1])
         })
       }
 
       for (var i = 0; i < fail.length; ++i, ++i) {
-        bg.lineStyle(8, 0xff0000).moveTo(
+        bg.lineStyle({width: 8, color: 0xff0000, cap: 'round'}).moveTo(
           fail[i][0], fail[i][1]).lineTo(fail[i + 1][0], fail[i + 1][1])
       }
     }
