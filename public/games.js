@@ -114,15 +114,19 @@
       var aid = document.getElementById(`answer${answers.length}`)
       if (match_glyph[0][0] == question[0]) {
         aid.src = './resources/bg_atari.png'
-      } else if (mask.length > 0)
+        return
+      }
+
+      if (mask.length > 0)
         aid.src = './resources/bg_succ.png'
       else
         aid.src = './resources/bg_fail.png'
-        if (answers.length == 6) {
-          fail = [...question[0]].map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
-          var fid = document.getElementById('fail_result')
-          fid.textContent = question[1]
-        }
+
+      if (answers.length == 6) {
+        fail = [...question[0]].map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
+        var fid = document.getElementById('fail_result')
+        fid.textContent = question[1]
+      }
 
       console.log(match_glyph)
       console.log(question)
