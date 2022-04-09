@@ -2,7 +2,7 @@
 
 Wordle like Glyph Game
 
-https://reirei0000.github.io/glyple/
+https://reirei0000.github.io/glyple/public/
 
 
 ## Glyph data
