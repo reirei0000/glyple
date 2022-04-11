@@ -34,7 +34,7 @@
   }
 
   function setMode(mode) {
-    document.cookie = `colormode=${mode}`;
+    document.cookie = `colormode=${mode}; max-age=22896000`;
   }
 
   function setColorMode() {
