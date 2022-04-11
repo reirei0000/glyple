@@ -159,18 +159,21 @@
 
       var aid = document.getElementById(`answer${answers.length}`)
       if (match_glyph[0][0] == question[0]) {
-        aid.src = './resources/bg_atari.png'
+        aid.src = './resources/bg_atari_mono.png'
         return
       }
 
-      if (mask.length > 0)
-        aid.src = './resources/bg_succ.png'
-      else
-        aid.src = './resources/bg_fail.png'
+      if (mask.length > 0) {
+        aid.src = './resources/bg_succ_mono.png'
+      } else {
+        aid.src = './resources/bg_fail_mono.png'
+      }
 
       if (answers.length == 6) {
         fail = [...question[0]].map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
         var fid = document.getElementById('fail_result')
+        rid.textContent = `${match_glyph[0][1]}`
+        rid.style = 'text-decoration: line-through;'
         fid.textContent = question[1]
       }
 
@@ -213,7 +216,7 @@
     if (particls.length == 0)
       passes = []
     var points = passes.map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
-    board.update(hits, particls, points, matches, mask, fail);
+    board.update(colormode, hits, particls, points, matches, mask, fail);
   }
 
   exports.onLoad = onLoad;
