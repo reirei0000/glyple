@@ -16,8 +16,54 @@
   var curx;
   var cury;
 
+  var colormode = 'color';
+
+  function getMode() {
+    var cookies = document.cookie;
+    var cookiesArray = cookies.split(';');
+    var v = 'color';
+
+    for (var c of cookiesArray) {
+      var cArray = c.split('=');
+      if (cArray[0].trim() == 'colormode') {
+        v = cArray[1]
+      }
+    }
+
+    return v;
+  }
+
+  function setMode(mode) {
+    document.cookie = `colormode=${mode}`;
+  }
+
+  function setColorMode() {
+    var mode = document.getElementById('mode');
+    var cmode = getMode();
+    if (cmode == 'color') {
+      mode.innerText = '🎨'
+    } else {
+      mode.innerText = '✏️'
+    }
+    setMode(cmode)
+    colormode = cmode;
+  }
+
   function onLoad() {
     board = new Board();
+
+    setColorMode();
+
+    function changeColorMode() {
+      var cmode = getMode();
+      if (cmode == 'color')
+        cmode = 'mono';
+      else
+        cmode = 'color';
+      setMode(cmode);
+      setColorMode();
+    }
+    document.getElementById('mode').addEventListener('click', changeColorMode)
 
     var app = board.init(WIDTH, HEIGHT);
     document.getElementById('board-container').appendChild(app.view);
