@@ -1,4 +1,4 @@
-# glyple
+# Glyple
 
 Wordle like Glyph Game
 
@@ -7,7 +7,8 @@ https://reirei0000.github.io/glyple/public/
 
 ## Glyph data
 
-Thanks
+* [ingress-glyph-tools](https://github.com/gm9/ingress-glyph-tools)
 
-Refer:
-https://github.com/gm9/ingress-glyph-tools
+## Thanks
+
+* [Wordle](https://www.nytimes.com/games/wordle/index.html)
