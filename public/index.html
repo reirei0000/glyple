@@ -16,25 +16,45 @@
     <script>
       window.addEventListener("load", onLoad);
     </script>
-  </head>
-  <body style="background: black">
     <style>
       body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
-      header .title {
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        margin: 2px 2px 2px 0;
+        color: white;
+      }
+      header #help {
+        display: flex;
+        font-size: 30px;
+        margin: 0;
+        padding: 0;
+        width: 70px;
+        justify-content: flex-start;
+      }
+      header #title {
         font-weight: 700;
         font-size: 37px;
-        color: white;
         line-height: 100%;
         text-align: center;
         left: 0;
         right: 0;
         pointer-events: none;
       }
-      .answers{
+      header #mode {
+        display: flex;
+        font-size: 30px;
+        width: 70px;
+        justify-content: flex-end;
+      }
+      .answers {
         display: flex;
         margin: 0 auto;
       }
@@ -97,9 +117,14 @@
         100% {-webkit-transform: -webkit-translate(0px, 0px)}
       }
     </style>
+  </head>
+  <body style="background: black">
     <header>
-      <div class='title'>Glyple</div>
+      <div id='help'><a href=help.html>❔</a></div>
+      <div id='title'>Glyple</div>
+      <div id='mode'> </div>
     </header>
+    <hr>
     <div id='game'>
       <div class='answers'>
         <div class='answers-board'>
