@@ -12,6 +12,7 @@
   var mask = []
   var fail = []
   var hits = []
+  var shares = ''
 
   var curx;
   var cury;
@@ -49,7 +50,76 @@
     colormode = cmode;
   }
 
+  function popupImage() {
+    var popup = document.getElementById('js-popup');
+    if(!popup) return;
+
+    var blackBg = document.getElementById('js-black-bg');
+    var closeBtn = document.getElementById('js-close-btn');
+    var showBtn = document.getElementById('js-show-popup');
+
+    closePopUp(blackBg);
+    closePopUp(closeBtn);
+    closePopUp(showBtn);
+    function closePopUp(elem) {
+      if(!elem) return;
+      elem.addEventListener('click', function() {
+        popup.classList.toggle('is-show');
+      });
+    }
+  }
+
+  function shareDistribution() {
+    var distribution = document.getElementById('distribution');
+    copyToClipboard(distribution.textContent);
+    console.log(distribution.textContent)
+  }
+
+  function copyToClipboard(string) {
+    let textarea;
+    let result;
+
+    try {
+      textarea = document.createElement('textarea');
+      textarea.setAttribute('readonly', true);
+      textarea.setAttribute('contenteditable', true);
+      textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+      textarea.value = string;
+
+      document.body.appendChild(textarea);
+
+      textarea.focus();
+      textarea.select();
+
+      const range = document.createRange();
+      range.selectNodeContents(textarea);
+
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+
+      textarea.setSelectionRange(0, textarea.value.length);
+      result = document.execCommand('copy');
+    } catch (err) {
+      console.error(err);
+      result = null;
+    } finally {
+      document.body.removeChild(textarea);
+    }
+    return true;
+  }
+
+  function downloadCanvas() {
+    let canvas = document.getElementsByTagName('canvas')[0]
+    let link = document.getElementById('hiddenLink')
+    link.download = `${question[1]}.jpg`
+    link.href = canvas.toDataURL('image/jpeg')
+
+    link.click()
+  }
+
   function onLoad() {
+    popupImage();
     board = new Board();
 
     setColorMode();
@@ -64,7 +134,8 @@
       setColorMode();
     }
     document.getElementById('mode').addEventListener('click', changeColorMode)
-
+    document.getElementById('downloadbtn').addEventListener('click', downloadCanvas)
+    document.getElementById('sharebtn').addEventListener('click', shareDistribution)
     var app = board.init(WIDTH, HEIGHT);
     document.getElementById('board-container').appendChild(app.view);
 
@@ -157,17 +228,27 @@
 
       mask = createMask(question[0], answers_path).map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
 
+      var popup = document.getElementById('js-popup');
+      var distribution = document.getElementById('distribution');
       var aid = document.getElementById(`answer${answers.length}`)
       if (match_glyph[0][0] == question[0]) {
         aid.src = './resources/bg_atari_mono.png'
+        shares += `🟦 ${match_glyph[0][1]}\n`
+        console.log(shares)
+
+        distribution.textContent = `Glyple ${answers.length}/6\n\n` + shares;
+        popup.classList.toggle('is-show');
         return
       }
 
       if (mask.length > 0) {
         aid.src = './resources/bg_succ_mono.png'
+        shares += `🟨 ${match_glyph[0][1]}\n`
       } else {
         aid.src = './resources/bg_fail_mono.png'
+        shares += `🟥 ${match_glyph[0][1]}\n`
       }
+      console.log(shares)
 
       if (answers.length == 6) {
         fail = [...question[0]].map(p => [gpoints[p][0] * WIDTH, gpoints[p][1] * HEIGHT])
@@ -175,6 +256,9 @@
         rid.textContent = `${match_glyph[0][1]}`
         rid.style = 'text-decoration: line-through;'
         fid.textContent = question[1]
+
+        distribution.textContent = 'Glyple X/6\n\n' + shares;
+        popup.classList.toggle('is-show');
       }
 
       console.log(match_glyph)

@@ -38,6 +38,7 @@
         width: w,
         height: h,
         backgroundColor: 0x000000,
+        preserveDrawingBuffer: true
       });
       // app.view.style.cssText =
         // "position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);";
